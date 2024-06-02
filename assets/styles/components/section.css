@@ -1,0 +1,64 @@
+/* Section
+############################################################################ */
+
+section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--size-l);
+
+  /* overflow: hidden; */
+
+  padding-bottom: var(--size-xxl);
+  background-color: var(--color-darkest);
+
+  @media screen and (width >= 768px){
+    height: 100vh;
+    padding-bottom: var(--size-l);
+  }
+
+  /* background: linear-gradient(180deg, var(--color-darkest), var(--color-dark)); */
+
+  --border-color: var(--color-darkest);
+
+  &.snap-in{
+    /* scroll-snap-align: start; */
+  }
+
+  &.mi-blau, &.mi-pink, &.mi-gruen, &.mi-lila, &.mi-black, &.mi-grau{
+    h1, h2, h3, p{
+      color: var(--color-lightest);
+
+      --border-color: var(--color-lightest);
+    }
+  }
+
+  &.mi-blau {
+    background-color: var(--color-mi-blau);
+  }
+
+  &.mi-pink {
+    background-color: var(--color-mi-pink);
+  }
+
+  &.mi-gruen {
+    background-color: var(--color-mi-gruen);
+  }
+
+  &.mi-lila {
+    background-color: var(--color-mi-lila);
+  }
+
+  &.mi-black {
+    background-color: var(--color-mi-black);
+  }
+
+  &.mi-grau {
+    background-color: var(--color-mi-grau);
+  }
+
+  &.mi-hellgrau {
+    background-color: var(--color-mi-hellgrau);
+  }
+}

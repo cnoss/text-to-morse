@@ -1,0 +1,52 @@
+.input{
+  width: 100%;
+
+  textarea{
+    width: 100%;
+    height: fit-content;
+    border: solid 1px hsl(210deg 0% 30% / 20%);
+    margin-bottom: var(--size-m);
+    background-color: transparent;
+    font-family: var(--ff-code);
+  }
+} 
+
+.output{
+  width: 100%;
+  aspect-ratio: 1/1;
+  color: var(--color-darkest);
+  font-size: var(--size-xl);
+  font-weight: var(--fw-bold);
+
+  svg{
+    width: auto;
+    height: 100%;
+  }
+}
+
+@media screen and (width < 600px) {
+  .input{
+    margin-bottom: var(--size-xl);
+  }
+}
+
+@media screen and (width >= 600px) {
+  .input{
+    aspect-ratio: 1/1;
+  }
+}
+
+label{
+  display: block;
+  margin-bottom: var(--size-s);
+}
+
+.stepper > input{
+  display: inline-block;
+  width: 5em;
+}
+
+button{
+  display: inline-block;
+  width: fit-content;
+}

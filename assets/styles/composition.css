@@ -1,0 +1,14 @@
+/* Main
+############################################################################ */
+
+main{
+  @media screen and (width >= 600px) {
+    display: grid;
+    gap: var(--size-m);
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+body{
+  background-color: hsl(0deg 0% 90%);
+}

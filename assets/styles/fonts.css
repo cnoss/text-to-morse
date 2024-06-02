@@ -1,0 +1,64 @@
+@font-face {
+  font-family: poppins;  
+  font-weight: 200;
+  src: url("../fonts/Poppins/Poppins-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: poppins;  
+  font-weight: 400;
+  src: url("../fonts/Poppins/Poppins-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: poppins;  
+  font-weight: 500;
+  src: url("../fonts/Poppins/Poppins-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: poppins;  
+  font-weight: 700;
+  src: url("../fonts/Poppins/Poppins-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: raleway;  
+  font-weight: 200;
+  src: url("../fonts/Raleway/static/Raleway-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: raleway;  
+  font-weight: 400;
+  src: url("../fonts/Raleway/static/Raleway-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: raleway;  
+  font-weight: 500;
+  src: url("../fonts/Raleway/static/Raleway-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: raleway;  
+  font-weight: 700;
+  src: url("../fonts/Raleway/static/Raleway-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: barlow;  
+  font-weight: 200;
+  src: url("../fonts/Barlow/Barlow-Light.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: barlow;  
+  font-weight: 400;
+  src: url("../fonts/Barlow/Barlow-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: material-icons;
+  src: url("../fonts/Material_Icons/font/MaterialIconsOutlined-Regular.otf") format("opentype");
+}
