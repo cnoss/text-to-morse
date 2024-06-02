@@ -52,9 +52,22 @@ const data = {
       "kurz": `<circle r="5" cx="5" cy="5" fill="black" />`,
       "lang": `<rect width="20" height="10" x="0" y="0" fill="black" />`
     }
-
   },
 
+  "color-1": {
+    "hue": 0,
+    "saturation": 0,
+    "lightness": 0
+  },
+
+  "color-2": {
+    "hue": 0,
+    "saturation": 0,
+    "lightness": 0
+  },
+
+  "colspan": 10,
+  "rowspan": 10,
 
   "unit": 10,
   "ratio": 3,
@@ -70,7 +83,16 @@ const data = {
 
 const renderLetter = (code, appearance) => {
 
-  const { unit, ratio } = data;
+  const unit =  parseInt(data.unit);
+  const ratio = parseInt(data.ratio);
+
+  const hue1 = data['color-1'].hue;
+  const saturation1 = data['color-1'].saturation;
+  const lightness1 = data['color-1'].lightness;
+
+  const hue2 = data['color-2'].hue;
+  const saturation2 = data['color-2'].saturation;
+  const lightness2 = data['color-2'].lightness;
 
   switch (appearance) {
     case 'rect':
@@ -78,18 +100,18 @@ const renderLetter = (code, appearance) => {
       switch (code) {
         case 'kurz':
           return {
-            "shift": unit * 2,
-            "letter": `<rect width="${unit}" height="${unit}" x="0" y="0" fill="black" />`
+            "shift": unit + parseInt(data.colspan),
+            "letter": `<rect width="${unit}" height="${unit}" x="0" y="0" fill="hsl(${hue1}deg ${saturation1}% ${lightness1}%)" />`
           };
 
         case 'lang':
           return {
-            "shift": (unit * ratio) + unit,
-            "letter": `<rect width="${unit * ratio}" height="${unit}" x="0" y="0" fill="black" />`
+            "shift": (unit * ratio) + parseInt(data.colspan),
+            "letter": `<rect width="${unit * ratio}" height="${unit}" x="0" y="0" fill="hsl(${hue2}deg ${saturation2}% ${lightness2}%)" />`
           };
         case 'space':
           return {
-            "shift": (unit * ratio) + unit,
+            "shift": (unit * ratio) + parseInt(data.colspan),
             "letter": ``
           };
       }
@@ -99,18 +121,18 @@ const renderLetter = (code, appearance) => {
       switch (code) {
         case 'kurz':
           return {
-            "shift": unit * 2,
-            "letter": `<circle r="${unit/2}" cx="${unit/2}" cy="${unit/2}" fill="black" />`
+            "shift": unit + parseInt(data.colspan),
+            "letter": `<circle r="${unit/2}" cx="${unit/2}" cy="${unit/2}" fill="hsl(${hue1}deg ${saturation1}% ${lightness1}%)" />`
           };
 
         case 'lang':
           return {
-            "shift": (unit * ratio) + unit,
-            "letter": `<rect width="${unit * ratio}" height="${unit}" x="0" y="0" fill="black" />`
+            "shift": (unit * ratio) + parseInt(data.colspan),
+            "letter": `<rect width="${unit * ratio}" height="${unit}" x="0" y="0" fill="hsl(${hue2}deg ${saturation2}% ${lightness2}%)" />`
           };
         case 'space':
           return {
-            "shift": (unit * ratio) + unit,
+            "shift": (unit * ratio) + parseInt(data.colspan),
             "letter": ``
           };
       }
@@ -131,8 +153,8 @@ const renderMorseCode = (text) => {
   let row = 0;
 
   for (let i = 0; i < upperCaseText.length; i++) {
-    const letter = upperCaseText[i];
-    const letterMorseCode = morseCode[letter];
+    const letterASCII = upperCaseText[i];
+    const letterMorseCode = morseCode[letterASCII];
     let cursor  = 0;
 
     if (!letterMorseCode) {
@@ -148,16 +170,16 @@ const renderMorseCode = (text) => {
         </g>
       `;
 
-      cursor += shift;
+      cursor += parseInt(shift);
       return result;
     });
 
     morseCodeString += `
-      <g transform="translate(0, ${row * (unit * 2)})">
-        ${letterMorseCodeSVG}
+      <g transform="translate(0, ${row})">
+        ${letterMorseCodeSVG.join('')}
       </g>`;
 
-    row++;
+    row += parseInt(data.rowspan);
   }
 
   morseCodeContainer.innerHTML = `
@@ -165,8 +187,6 @@ const renderMorseCode = (text) => {
     ${morseCodeString}
     </svg>
   `;
-
-
 }
 
 const listenToInput = () => {
@@ -206,6 +226,8 @@ const listenToAppearance = () => {
   const appearanceSelector = document.querySelectorAll('[data-js-appearance] input');
 
   appearanceSelector.forEach((selector) => {
+    data.appearance = selector.value;
+
     selector.addEventListener('click', function () {
       data.appearance = this.value;
       renderMorseCode(document.querySelector('[data-js-text-input]').value);
@@ -213,8 +235,20 @@ const listenToAppearance = () => {
   });
 }
 
+const getSizeData = () => {
+  const sizeSelector = document.querySelectorAll('[data-js-size] input');
+
+  sizeSelector.forEach((selector) => {
+    const field = selector.id;
+    const value = selector.value;
+    data[field] = value;
+  });
+};
+
 const listenToSize = () => {
   const sizeSelector = document.querySelectorAll('[data-js-size] input');
+
+  getSizeData();
 
   sizeSelector.forEach((selector) => {
     selector.addEventListener('click', function () {
@@ -226,13 +260,56 @@ const listenToSize = () => {
   });
 }
 
+const listenToColor = (indicator) => {
+  const colorSelector = document.querySelectorAll('[data-js-'+indicator+'] input');
+
+  colorSelector.forEach((selector) => {
+    const field = selector.id;
+    const value = selector.value;
+    data[indicator][field] = value;
+  });
+
+  colorSelector.forEach((selector) => {
+    
+    selector.addEventListener('change', function () {
+      const field = this.id;
+      const value = this.value;
+      data[indicator][field] = value;    
+      renderMorseCode(document.querySelector('[data-js-text-input]').value);
+    });
+  });
+};
+
+const listenToPadding = () => {
+  const paddingSelector = document.querySelectorAll('[data-js-padding] input');
+
+  paddingSelector.forEach((selector) => {
+    const field = selector.id;
+    const value = selector.value;
+    data[field] = value;
+  });
+
+  paddingSelector.forEach((selector) => {
+    
+    selector.addEventListener('click', function () {
+      const field = this.id;
+      const value = this.value;
+      data[field] = value;    
+      renderMorseCode(document.querySelector('[data-js-text-input]').value);
+    });
+  });
+};
+
 /* Main
 ############################################################################ */
 
 document.addEventListener('DOMContentLoaded', function () {
   listenToAppearance();
   listenToSize();
+  listenToPadding();
   listenToInput();
+  listenToColor("color-1");
+  listenToColor("color-2");
   showSomeText();
   saveSVG();
 });

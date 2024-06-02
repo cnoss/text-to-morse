@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Morse COde als SVG</title>
+  <title>Morse Code als SVG</title>
 
   <link rel="stylesheet" href="./compiled-assets/styles/main.css">
 
@@ -22,15 +22,56 @@
     <form class="input">
       <textarea data-js-text-input></textarea>
 
-      <label for="appearance" data-js-appearance>
+      <fieldset data-js-appearance>
         <input type="radio" id="rect" name="appearance" value="rect" checked>eckig
         <input type="radio" id="round" name="appearance" value="round">rund
-      </label>
+      </fieldset>
 
-      <label for="size" data-js-size class="stepper">
-        <input type="number" id="unit" name="size" min="1" max="30" value="10"> unit
-        <input type="number" id="ratio" name="size" min="0.1" max="10" value="3" step="1"> ratio
-      </label>
+      <fieldset data-js-size class="stepper">
+        <legend>Größe</legend>
+        <label>
+          <input type="number" id="unit" name="size" min="1" max="30" value="20"> unit
+        </label>
+        <label>
+          <input type="number" id="ratio" name="size" min="1" max="10" value="3" step="1"> ratio
+        </label>
+      </fieldset>
+
+      <fieldset data-js-padding class="stepper">
+        <legend>Abstand</legend>
+        <label>
+          <input type="number" id="colspan" name="size" min="0" max="100" value="10"> cols
+        </label>
+        <label>
+          <input type="number" id="rowspan" name="size" min="0" max="100" value="40"> rows
+        </label>
+      </fieldset>
+
+      <fieldset data-js-color-1>
+        <strong>Farbe 1</strong>
+        <label>
+          <input type="range" id="hue" name="color" min="0" max="360" value="0"/> Farbwert
+        </label>
+        <label>
+          <input type="range" id="saturation" name="color" min="0" max="100" value="0" /> Sättigung
+        </label>
+        <label>
+          <input type="range" id="lightness" name="color" min="0" max="100" value="0"/> Helligkeit
+        </label>
+      </fieldset>
+
+      <fieldset data-js-color-2>
+        <strong>Farbe 2</strong>
+        <label>
+          <input type="range" id="hue" name="color" min="0" max="360" value="0"/> Farbwert
+        </label>
+        <label>
+          <input type="range" id="saturation" name="color" min="0" max="100" value="0" /> Sättigung
+        </label>
+        <label>
+          <input type="range" id="lightness" name="color" min="0" max="100" value="0"/> Helligkeit
+        </label>
+      </fieldset>
 
     </form>
 

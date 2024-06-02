@@ -50,3 +50,7 @@ button{
   display: inline-block;
   width: fit-content;
 }
+
+fieldset{
+  margin-bottom: var(--size-m);;
+}

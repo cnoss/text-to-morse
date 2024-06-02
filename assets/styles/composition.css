@@ -4,7 +4,7 @@
 main{
   @media screen and (width >= 600px) {
     display: grid;
-    gap: var(--size-m);
+    gap: var(--size-xxl);
     grid-template-columns: 1fr 1fr;
   }
 }
