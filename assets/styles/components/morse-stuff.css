@@ -6,7 +6,7 @@
     height: fit-content;
     border: solid 1px hsl(210deg 0% 30% / 20%);
     margin-bottom: var(--size-m);
-    background-color: transparent;
+    background-color: var(--color-light);
     font-family: var(--ff-code);
   }
 } 
@@ -52,5 +52,10 @@ button{
 }
 
 fieldset{
-  margin-bottom: var(--size-m);;
+  margin-bottom: var(--size-l);
+}
+
+fieldset legend{
+  margin-bottom: var(--size-s);
+  font-weight: var(--fw-bold);
 }

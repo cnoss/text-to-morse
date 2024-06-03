@@ -226,7 +226,7 @@ const listenToAppearance = () => {
   const appearanceSelector = document.querySelectorAll('[data-js-appearance] input');
 
   appearanceSelector.forEach((selector) => {
-    data.appearance = selector.value;
+    data.appearance = selector.checked ? selector.value : data.appearance;
 
     selector.addEventListener('click', function () {
       data.appearance = this.value;

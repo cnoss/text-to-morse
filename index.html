@@ -23,8 +23,9 @@
       <textarea data-js-text-input></textarea>
 
       <fieldset data-js-appearance>
-        <input type="radio" id="rect" name="appearance" value="rect" checked>eckig
-        <input type="radio" id="round" name="appearance" value="round">rund
+        <legend>Aussehen</legend>
+        <input type="radio" id="appearance" name="appearance" value="rect" checked>eckig
+        <input type="radio" id="appearance" name="appearance" value="round">rund
       </fieldset>
 
       <fieldset data-js-size class="stepper">
@@ -48,7 +49,7 @@
       </fieldset>
 
       <fieldset data-js-color-1>
-        <strong>Farbe 1</strong>
+        <legend>Farbe kurz</legend>
         <label>
           <input type="range" id="hue" name="color" min="0" max="360" value="0"/> Farbwert
         </label>
@@ -61,7 +62,7 @@
       </fieldset>
 
       <fieldset data-js-color-2>
-        <strong>Farbe 2</strong>
+        <legend>Farbe lang</legend>
         <label>
           <input type="range" id="hue" name="color" min="0" max="360" value="0"/> Farbwert
         </label>

@@ -4,7 +4,7 @@
   "description": "Startercode for Frontend Development",
   "main": "index.js",
   "scripts": {
-    "server": "npx light-server -s . -w \"./**\" -b 192.168.0.206 -p 8080",
+    "server": "npx light-server -s . -w \"./**\" -p 8080",
     "lint": "stylelint assets/styles/**/*.css",
     "lint:fix": "stylelint assets/styles/**/*.css --fix",
     "copy:fonts": "recursive-copy -w assets/fonts compiled-assets/fonts",
