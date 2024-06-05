@@ -72,7 +72,10 @@ const data = {
   "unit": 10,
   "ratio": 3,
 
-  "appearance": "rect"
+  "appearance": "rect",
+
+  "width": 200,
+  "height": 200
 
 };
 
@@ -183,7 +186,7 @@ const renderMorseCode = (text) => {
   }
 
   morseCodeContainer.innerHTML = `
-    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+    <svg width="${data.width}" height="${data.height}" xmlns="http://www.w3.org/2000/svg">
     ${morseCodeString}
     </svg>
   `;
@@ -208,16 +211,17 @@ const showSomeText = () => {
 
 
 const saveSVG = () => {
+
   const saveButton = document.querySelector('[data-js-save]');
-  const input = document.querySelector('[data-js-text-input]');
-  const filename = input.value;
 
   saveButton.addEventListener('click', function () {
     const svg = document.querySelector('[data-js-morse-output] svg');
+    const input = document.querySelector('[data-js-text-input]');
+    const filename = input.value.replace(/[^a-zA-Z0-9]/g, '_');
 
     svgExport.downloadSvg(
       svg, filename,
-      { width: 200, height: 200 }
+      { width: data.width, height: data.height }
     );
   });
 };
@@ -300,6 +304,22 @@ const listenToPadding = () => {
   });
 };
 
+const setDimensions = () => {
+  const morseCodeContainer = document.querySelector('[data-js-morse-output]');
+  data.width = morseCodeContainer.offsetWidth;
+  data.height = morseCodeContainer.offsetHeight;
+}
+
+const observeWindowSize = () => {
+
+  setDimensions();
+
+  window.addEventListener('resize', function () {
+    setDimensions();
+    renderMorseCode(document.querySelector('[data-js-text-input]').value);
+  });
+}
+
 /* Main
 ############################################################################ */
 
@@ -310,6 +330,7 @@ document.addEventListener('DOMContentLoaded', function () {
   listenToInput();
   listenToColor("color-1");
   listenToColor("color-2");
+  observeWindowSize();
   showSomeText();
   saveSVG();
 });
