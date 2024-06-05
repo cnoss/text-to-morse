@@ -87,7 +87,7 @@ const data = {
 const renderLetter = (code, appearance) => {
 
   const unit =  parseInt(data.unit);
-  const ratio = parseInt(data.ratio);
+  const ratio = parseFloat(data.ratio);
 
   const hue1 = data['color-1'].hue;
   const saturation1 = data['color-1'].saturation;
@@ -217,7 +217,8 @@ const saveSVG = () => {
   saveButton.addEventListener('click', function () {
     const svg = document.querySelector('[data-js-morse-output] svg');
     const input = document.querySelector('[data-js-text-input]');
-    const filename = input.value.replace(/[^a-zA-Z0-9]/g, '_');
+    const inputString = input.value.replace(/[^a-zA-Z0-9]/g, '_');
+    const filename = `morse-code-${inputString}-${data.ratio}-${data.unit}-${data.colspan}-${data.rowspan}`;
 
     svgExport.downloadSvg(
       svg, filename,
