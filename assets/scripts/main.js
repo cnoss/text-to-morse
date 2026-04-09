@@ -220,10 +220,13 @@ const saveSVG = () => {
     const inputString = input.value.replace(/[^a-zA-Z0-9]/g, '_');
     const filename = `morse-code-${inputString}-${data.ratio}-${data.unit}-${data.colspan}-${data.rowspan}`;
 
-    svgExport.downloadSvg(
-      svg, filename,
-      { width: data.width, height: data.height }
-    );
+    const exporter = globalThis.svgExport;
+    if (!exporter || typeof exporter.downloadSvg !== 'function') {
+      console.error('SVG-Export ist nicht verfügbar: globalThis.svgExport.downloadSvg fehlt.');
+      return;
+    }
+
+    exporter.downloadSvg(svg, filename, { width: data.width, height: data.height });
   });
 };
 
